@@ -1,0 +1,41 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Poppins-Bold.ttf",
+      "sha1": "3bc8164396c3e6c1e4fae0cf2a51ea66381c1c2d"
+    },
+    {
+      "path": "assets/fonts/Ubuntu-Bold.ttf",
+      "sha1": "e6e5d5c4509b2bf09ff2da4634b7c086ff31ec1d"
+    },
+    {
+      "path": "assets/fonts/Ubuntu-BoldItalic.ttf",
+      "sha1": "bba32f94c17d65e76f10b3122a98f589e47f2ec9"
+    },
+    {
+      "path": "assets/fonts/Ubuntu-Italic.ttf",
+      "sha1": "b59abedfa8bad71f8e4d0b5b17d4be8e23c24734"
+    },
+    {
+      "path": "assets/fonts/Ubuntu-Light.ttf",
+      "sha1": "5225a876ea4102201651ccb60a75fb07af553d46"
+    },
+    {
+      "path": "assets/fonts/Ubuntu-LightItalic.ttf",
+      "sha1": "c816d889aa040f0395be3d5e7dfc796ef719ac64"
+    },
+    {
+      "path": "assets/fonts/Ubuntu-Medium.ttf",
+      "sha1": "e33c11ee7be9350ee1e2a405a5873527607e579a"
+    },
+    {
+      "path": "assets/fonts/Ubuntu-MediumItalic.ttf",
+      "sha1": "bfd3c0ba1c9b2d2eb4ccf5f7c05b6c258a15aa9e"
+    },
+    {
+      "path": "assets/fonts/Ubuntu-Regular.ttf",
+      "sha1": "7b593c34a20e2bf05bdf072d976d31c89fe952f0"
+    }
+  ]
+}
