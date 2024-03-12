@@ -1,6 +1,6 @@
 import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import AuthHeader from '../../../frames/AuthHeader';
-import {StyleSheet, View,Platform} from 'react-native';
+import {StyleSheet, View, Platform} from 'react-native';
 import {Rtext} from '../../../components/Rtext';
 import {normalizeSize, SCREEN_HEIGHT, showFlashMessage} from '../../../utility';
 import {TextInput} from 'react-native-paper';
@@ -21,6 +21,8 @@ const OtpVerification = ({route}) => {
   const input1 = useRef();
   const input3 = useRef();
   const input4 = useRef();
+  const input5 = useRef();
+  const input6 = useRef();
   let otp_resding_time = route?.params?.otpTiming?.data?.resend?.time;
   let phone_number = route?.params?.phone_number;
   const [resendtiming, setResendtiming] = useState(otp_resding_time);
@@ -32,20 +34,14 @@ const OtpVerification = ({route}) => {
     }
   }, 1000);
 
- 
-
   useEffect(() => {
     requestAnimationFrame(() => {
-
-      if(Platform.OS=="ios"){
+      if (Platform.OS == 'ios') {
         input1.current.focus();
-      }
-      else{
+      } else {
         input2.current.focus();
         input1.current.focus();
       }
-      
-     
     });
   }, []);
 
@@ -54,6 +50,8 @@ const OtpVerification = ({route}) => {
     input2: '',
     input3: '',
     input4: '',
+    input5: '',
+    input6: '',
   });
 
   const _SetPhoneNumberHandler = (flag, text) => {
@@ -69,6 +67,12 @@ const OtpVerification = ({route}) => {
         break;
       case '4':
         setPhoneNumbers({...PhoneNumbers, input4: text});
+        break;
+      case '5':
+        setPhoneNumbers({...PhoneNumbers, input5: text});
+        break;
+      case '6':
+        setPhoneNumbers({...PhoneNumbers, input6: text});
         break;
       default:
         break;
@@ -106,8 +110,28 @@ const OtpVerification = ({route}) => {
       onKeyPress: _EmptyCheck,
       ref: input4,
     },
+    {
+      value: PhoneNumbers.input5,
+      placeHolder: 'X',
+      onChangeText: text => _SetPhoneNumberHandler('5', text),
+      onKeyPress: _EmptyCheck,
+      ref: input5,
+    },
+    {
+      value: PhoneNumbers.input6,
+      placeHolder: 'X',
+      onChangeText: text => _SetPhoneNumberHandler('6', text),
+      onKeyPress: _EmptyCheck,
+      ref: input6,
+    },
   ];
   const _FoucsCheck = () => {
+    if (PhoneNumbers.input5.length === 1) {
+      return input6.current.focus();
+    }
+    if (PhoneNumbers.input4.length === 1) {
+      return input5.current.focus();
+    }
     if (PhoneNumbers.input3.length === 1) {
       return input4.current.focus();
     }
@@ -121,7 +145,7 @@ const OtpVerification = ({route}) => {
   };
 
   useLayoutEffect(() => {
-    let EnterOtp = `${PhoneNumbers.input1}${PhoneNumbers.input2}${PhoneNumbers.input3}${PhoneNumbers.input4}`;
+    let EnterOtp = `${PhoneNumbers.input1}${PhoneNumbers.input2}${PhoneNumbers.input3}${PhoneNumbers.input4}${PhoneNumbers.input5}${PhoneNumbers.input6}`;
     if (EnterOtp.length == 4) {
       otpVeifictionFunc(EnterOtp);
     }
@@ -133,8 +157,13 @@ const OtpVerification = ({route}) => {
       let response = await request('post', 'clinic-users/submit-otp', data);
       dispatch(loginSuccess(response.data.data));
     } catch ({response}) {
-      showFlashMessage(response?.data?.error ? response?.data?.error : 'Please Enter valid OTP', '', 'danger');
-
+      showFlashMessage(
+        response?.data?.error
+          ? response?.data?.error
+          : 'Please Enter valid OTP',
+        '',
+        'danger',
+      );
     }
   };
 
@@ -142,6 +171,8 @@ const OtpVerification = ({route}) => {
     if (PhoneNumbers.input2 === '') return _SetPhoneNumberHandler('1', '');
     if (PhoneNumbers.input3 === '') return _SetPhoneNumberHandler('2', '');
     if (PhoneNumbers.input4 === '') return _SetPhoneNumberHandler('3', '');
+    if (PhoneNumbers.input5 === '') return _SetPhoneNumberHandler('4', '');
+    if (PhoneNumbers.input6 === '') return _SetPhoneNumberHandler('5', '');
   };
   return (
     <View style={{backgroundColor: '#ffffff', flex: 1}}>
@@ -163,9 +194,10 @@ const OtpVerification = ({route}) => {
           <View
             style={{
               flexDirection: 'row',
-              justifyContent: 'space-around',
+              justifyContent: 'space-between',
               paddingHorizontal: 15,
               paddingTop: 37,
+              gap:4,
             }}>
             {InputArray.map((item, index) => (
               <TextInput
@@ -214,6 +246,8 @@ const OtpVerification = ({route}) => {
                       input2: '',
                       input3: '',
                       input4: '',
+                      input5: '',
+                      input6: '',
                     });
                 }}>
                 <Rtext
@@ -253,6 +287,5 @@ const styles = StyleSheet.create({
     color: '#101010',
     fontSize: normalizeSize(21),
     borderRadius: 10,
-
   },
 });

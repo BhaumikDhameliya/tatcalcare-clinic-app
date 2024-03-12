@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "72146311469",
+    "project_id": "tatkal-care",
+    "storage_bucket": "tatkal-care.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72146311469:android:0c71063d9f368156e01ba4",
+        "android_client_info": {
+          "package_name": "com.tatkalcare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRDT8p_EoYU1Cv4svAFk7M-vdhrocWrE8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
